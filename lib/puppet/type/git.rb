@@ -1,10 +1,13 @@
+require 'pathname'
+require 'ruby-debug'
+
 Puppet::Type.newtype(:git) do
   @doc = "Manages git repository."
 
   ensurable do
-    desc "git repository state. Valid values are present, absent."
+    desc "git repo state, :present, :absent, :latest"
 
-    defaultto(:present)
+    attr_accessor :latest
 
     newvalue(:present) do
       provider.create
@@ -23,31 +26,54 @@ Puppet::Type.newtype(:git) do
     end
   end
 
-  newproperty(:source) do
+  newproperty(:origin) do
     desc "The git respository source."
-  end
-
-  newproperty(:revision) do
-    desc "The git respository revision."
   end
 
   newproperty(:branch) do
     desc "The git respository branch."
   end
 
+  newproperty(:commit) do
+    desc "The git respository commit."
+  end
+
+  newproperty(:latest) do
+    desc "Update the repo to match remote branch."
+
+    def change_to_s(val, newval)
+      "Changing commit from: #{resource[:head]} to: #{resource[:remote]}"
+    end
+  end
+
+  newparam(:head) do
+    desc "The git respository commit."
+  end
+
+  newparam(:remote) do
+    desc "The git respository commit."
+  end
+
+  newparam(:replace) do
+    desc "Replace the current directory if it's not a git repo."
+    defaultto(:true)
+  end
+
   validate do
-    if self[:branch] && self[:revision]
-      fail("git supports checkout of a branch(tag) or revision, not both")
+    fail("git repo origin is a required attribute.") unless self[:origin]
+
+    if self[:branch] && self[:commit]
+      fail("git supports checkout of a branch(tag) or commit, not both")
     end
 
-    unless self[:branch]
-      # default to master branch if user did not specify source or branch
+    unless self[:commit]
+      # default to master branch if user did not specify commit or branch
       self[:branch] ||= 'master'
     end
   end
 
   autorequire(:file) do
-    self[:source] if self[:source] and Pathname.new(self[:source]).absolute?
+    parent = Pathname.new(self[:path]) if self[:path]
   end
 
   autorequire(:package) do
