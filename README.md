@@ -4,13 +4,16 @@
 
 ## git class
 
-The git class installs the git package:
+The git class installs the git package for RedHat family.
 
-class { 'git': }
+class { 'git': 
+  version => '1.7.11.1',
+  source  => 'http://repo.local',
+}
 
 ## git resource
 
-git resource will automatically depend on the git package, and the parent file directory.
+git resource will automatically depend on the git class, and the parent file directory.
 
     git { '/opt/repo/vcsrepo':
       ensure => present,
