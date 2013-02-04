@@ -1,5 +1,4 @@
 require 'pathname'
-require 'ruby-debug'
 
 Puppet::Type.newtype(:git) do
   @doc = "Manages git repository."
