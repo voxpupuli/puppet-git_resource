@@ -15,7 +15,7 @@ git resource will automatically depend on the git package, and the parent file d
     git { '/opt/repo/vcsrepo':
       ensure => present,
       commit => '4d2942edc26e7cd144a3178a1a7f6470ea401345',
-      source => 'git@github.com:puppetlabs/puppetlabs-vcsrepo.git',
+      origin => 'git@github.com:puppetlabs/puppetlabs-vcsrepo.git',
       # automatic dependencies:
       # require => [File['/opt/repo'], Package['git']],
     }
@@ -25,5 +25,5 @@ git resource will automatically depend on the git package, and the parent file d
       ensure => present,
       branch => 'master',
       latest => true,
-      source => 'git@github.com:puppetlabs/puppetlabs-vcsrepo.git',
+      origin => 'git@github.com:puppetlabs/puppetlabs-vcsrepo.git',
     }
