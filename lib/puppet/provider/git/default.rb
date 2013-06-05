@@ -45,6 +45,7 @@ Puppet::Type.type(:git).provide(:git) do
     if resource[:commit]
       true
     else
+      run_cwd{ git('fetch', '--all') }
       head = run_cwd{ git('rev-parse', 'HEAD') }
       remote = run_cwd{ git('rev-parse', "origin/#{resource[:branch]}") }
       resource[:head] = head
@@ -57,10 +58,6 @@ Puppet::Type.type(:git).provide(:git) do
     remote = run_cwd{ git('rev-parse', "origin/#{resource[:branch]}") }
     Puppet.debug(remote)
     run_cwd{ git('reset', '--hard', remote) }
-  end
-
-  def origin=(value)
-    run_cwd{ git('config', 'remote.origin.url', resource[:origin]) }
   end
 
   def create
