@@ -6,7 +6,7 @@
 
 The git class installs the git package for RedHat family.
 
-class { 'git': 
+class { 'git':
   version => '1.7.11.1',
   source  => 'http://repo.local',
 }
