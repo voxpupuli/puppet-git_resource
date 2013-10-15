@@ -1,5 +1,7 @@
 # puppet git module
 
+[![Build Status](https://travis-ci.org/nanliu/puppet-git.png?branch=master)](https://travis-ci.org/nanliu/puppet-git)
+
 [puppetlabs-vcsrepo](https://github.com/puppetlabs/puppetlabs-vcsrepo) supports git, however I don't use other vcsrepo types, and bare repos. This is a simpler example implementing a git specific module, while adding automatic dependency against git package which vcsrepo type can not assume.
 
 ## Usage
