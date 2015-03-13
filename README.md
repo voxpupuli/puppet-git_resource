@@ -31,11 +31,18 @@ git { '/opt/repo/vcsrepo':
 }
 
 git { 'vcsrepo':
-  path   => '/opt/repo/vcsrepo2'
+  path   => '/opt/repo/vcsrepo2',
   ensure => present,
   branch => 'master',
   latest => true,
   origin => 'git@github.com:puppetlabs/puppetlabs-vcsrepo.git',
+}
+
+git { 'vcsrepo1':
+  path   => '/tmp/vcsrepo1',
+  ensure => present,
+  tag    => '1.1.0',
+  origin => 'https://github.com/puppetlabs/puppetlabs-vcsrepo.git',
 }
 ```
 
