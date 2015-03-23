@@ -37,6 +37,10 @@ Puppet::Type.newtype(:git) do
     desc "The git respository commit."
   end
 
+  newproperty(:tag) do
+    desc "The git respository tag."
+  end
+
   newproperty(:latest) do
     desc "Update the repo to match remote branch."
 
@@ -62,10 +66,14 @@ Puppet::Type.newtype(:git) do
     fail("git repo origin is a required attribute.") unless self[:origin]
 
     if self[:branch] && self[:commit]
-      fail("git supports checkout of a branch(tag) or commit, not both")
+      fail("git supports checkout of a only one of: tag, commit, or branch.")
+    elsif self[:branch] && self[:tag]
+      fail("git supports checkout of a only one of: tag, commit, or branch.")
+    elsif self[:tag] && self[:commit]
+      fail("git supports checkout of a only one of: tag, commit, or branch.")
     end
 
-    unless self[:commit]
+    unless self[:commit] or self[:tag]
       # default to master branch if user did not specify commit or branch
       self[:branch] ||= 'master'
     end

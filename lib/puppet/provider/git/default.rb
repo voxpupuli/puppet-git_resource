@@ -25,6 +25,16 @@ Puppet::Type.type(:git).provide(:git) do
     end
   end
 
+  def tag
+    commit = run_cwd{ git('rev-parse', 'HEAD') }
+    tag = run_cwd{ git('name-rev', '--name-only', '--tags', commit) }
+    tag.split('^')[0]
+  end
+
+  def tag=(value)
+    run_cwd{ git('checkout', resource[:tag]) }
+  end
+
   def branch
     run_cwd{ git('rev-parse', '--abbrev-ref', 'HEAD') }
   end
@@ -42,7 +52,7 @@ Puppet::Type.type(:git).provide(:git) do
   end
 
   def latest
-    if resource[:commit]
+    if resource[:commit] or resource[:tag]
       true
     else
       run_cwd{ git('fetch', '--all') }
@@ -67,7 +77,7 @@ Puppet::Type.type(:git).provide(:git) do
     end
     git('clone', resource[:origin], resource[:path])
     unless resource[:branch] == 'master'
-      run_cwd{ git('checkout', resource[:branch] || resource[:commit]) }
+      run_cwd{ git('checkout', [resource[:branch], resource[:commit], resource[:tag]].find{ |t| t } ) }
     end
   end
 
