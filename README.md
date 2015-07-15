@@ -1,21 +1,14 @@
-# puppet git module
+# Puppet git resource
 
-[![Build Status](https://travis-ci.org/nanliu/puppet-git.png?branch=master)](https://travis-ci.org/nanliu/puppet-git)
+[![Build Status](https://travis-ci.org/puppet-community/puppet-git.png?branch=master)](https://travis-ci.org/puppet-community/puppet-git)
 
-[puppetlabs-vcsrepo](https://github.com/puppetlabs/puppetlabs-vcsrepo) supports git, however I don't use other vcsrepo types, and bare repos. This is a simpler example implementing a git specific module, while adding automatic dependency against git package which vcsrepo type can not assume.
+[puppetlabs-vcsrepo](https://github.com/puppetlabs/puppetlabs-vcsrepo) supports git, however I don't use other vcsrepo types, and bare repos. This is a simpler example implementing a git specific module, while adding automatic dependency against git class which vcsrepo type can not assume.
+
+## Warning
+
+* This project have been migrated to [puppet-community](https://github.com/puppet-community/puppet-git_resource), please adjust your repo git source.
 
 ## Usage
-
-### git class
-
-The git class installs the git package for RedHat family.
-
-```puppet
-class { 'git':
-  version => '1.7.11.1',
-  source  => 'http://repo.local',
-}
-```
 
 ### git resource
 
