@@ -83,7 +83,4 @@ Puppet::Type.newtype(:git) do
     parent = Pathname.new(self[:path]) if self[:path]
   end
 
-  autorequire(:class) do
-    'git'
-  end
 end
