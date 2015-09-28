@@ -8,6 +8,11 @@
 
 * This project have been migrated to [puppet-community](https://github.com/puppet-community/puppet-git_resource), please adjust your repo git source.
 
+## Compatibility
+
+* RedHat
+* Debian
+
 ## Usage
 
 ### git resource
