@@ -93,7 +93,4 @@ Puppet::Type.newtype(:git) do
     req
   end
 
-  autorequire(:class) do
-    'git'
-  end
 end
