@@ -15,7 +15,7 @@ Puppet::Type.type(:git).provide(:git) do
   end
 
   def commit
-    run_cwd{ git('rev-parse', '--verify', resource[:commit]) }
+    run_cwd{ git('rev-parse', 'HEAD') }
   end
 
   def commit=(value)
