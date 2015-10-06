@@ -32,7 +32,10 @@ Puppet::Type.type(:git).provide(:git) do
   end
 
   def tag=(value)
-    run_cwd{ git('checkout', resource[:tag]) }
+    run_cwd do
+      git('fetch', '--all')
+      git('checkout', '-f',  resource[:tag])
+    end
   end
 
   def branch
