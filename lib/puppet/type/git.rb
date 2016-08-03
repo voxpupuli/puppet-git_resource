@@ -82,7 +82,7 @@ Puppet::Type.newtype(:git) do
   autorequire(:file) do
     req = []
     path = Pathname.new(self[:path])
-    if !path.root?
+    unless path.root?
       # Start at our parent, to avoid autorequiring ourself
       parents = path.parent.enum_for(:ascend)
       if found = parents.find { |p| catalog.resource(:file, p.to_s) }
