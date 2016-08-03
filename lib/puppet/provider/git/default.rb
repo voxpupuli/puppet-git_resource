@@ -21,7 +21,7 @@ Puppet::Type.type(:git).provide(:git) do
   def commit=(value)
     run_cwd do
       git('fetch', '--all')
-      git('checkout', '-f',  resource[:commit])
+      git('checkout', '-f', resource[:commit])
     end
   end
 
@@ -34,7 +34,7 @@ Puppet::Type.type(:git).provide(:git) do
   def tag=(value)
     run_cwd do
       git('fetch', '--all')
-      git('checkout', '-f',  resource[:tag])
+      git('checkout', '-f', resource[:tag])
     end
   end
 
