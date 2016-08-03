@@ -92,5 +92,4 @@ Puppet::Type.newtype(:git) do
 
     req
   end
-
 end
