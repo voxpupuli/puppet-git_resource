@@ -6,7 +6,7 @@ Puppet::Type.type(:git).provide(:git) do
   commands :git => 'git'
 
   # Execute commands in git source code directory
-  def run_cwd(dir=resource[:path], &block)
+  def run_cwd(dir = resource[:path], &block)
     result = nil
     Dir.chdir(dir) do
       result = (yield).chomp
