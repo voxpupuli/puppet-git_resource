@@ -80,7 +80,7 @@ Puppet::Type.type(:git).provide(:git) do
     end
     git('clone', resource[:origin], resource[:path])
     unless resource[:branch] == 'master'
-      run_cwd { git('checkout', [resource[:branch], resource[:commit], resource[:tag]].find { |t| t } ) }
+      run_cwd { git('checkout', [resource[:branch], resource[:commit], resource[:tag]].find { |t| t }) }
     end
   end
 
