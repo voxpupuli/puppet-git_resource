@@ -17,7 +17,7 @@ Puppet::Type.newtype(:git) do
     end
   end
 
-  newparam(:path, :namevar=>true) do
+  newparam(:path, namevar: true) do
     desc 'The git respository file path, must be absolute.'
 
     validate do |value|

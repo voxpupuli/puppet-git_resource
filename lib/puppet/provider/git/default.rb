@@ -1,9 +1,9 @@
 Puppet::Type.type(:git).provide(:git) do
   @doc = 'Manages git repos.'
 
-  confine :feature => :posix
+  confine feature: :posix
 
-  commands :git => 'git'
+  commands git: 'git'
 
   # Execute commands in git source code directory
   def run_cwd(dir = resource[:path], &block)
@@ -85,7 +85,7 @@ Puppet::Type.type(:git).provide(:git) do
   end
 
   def destroy
-    FileUtils.rmtree(resource[:path], :secure => true)
+    FileUtils.rmtree(resource[:path], secure: true)
   end
 
   def exists?
