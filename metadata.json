@@ -2,7 +2,7 @@
   "name":         "puppet-git_resource",
   "version":      "0.3.0",
   "author":       "puppet",
-  "license":      "Apache 2.0",
+  "license":      "Apache-2.0",
   "summary":      "Module for manipulating git repository checkouts",
   "source":       "https://github.com/puppet-community/puppet-git_resource",
   "project_page": "https://github.com/puppet-community/puppet-git_resource",
