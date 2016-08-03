@@ -9,7 +9,7 @@ Puppet::Type.type(:git).provide(:git) do
   def run_cwd(dir = resource[:path], &block)
     result = nil
     Dir.chdir(dir) do
-      result = (yield).chomp
+      result = yield.chomp
     end
     result
   end
