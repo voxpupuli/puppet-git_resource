@@ -15,7 +15,7 @@ Puppet::Type.type(:git).provide(:git) do
   end
 
   def commit
-    run_cwd{ git('rev-parse', 'HEAD') }
+    run_cwd { git('rev-parse', 'HEAD') }
   end
 
   def commit=(value)
@@ -26,8 +26,8 @@ Puppet::Type.type(:git).provide(:git) do
   end
 
   def tag
-    commit = run_cwd{ git('rev-parse', 'HEAD') }
-    tag = run_cwd{ git('name-rev', '--name-only', '--tags', commit) }
+    commit = run_cwd { git('rev-parse', 'HEAD') }
+    tag = run_cwd { git('name-rev', '--name-only', '--tags', commit) }
     tag.split('^')[0]
   end
 
@@ -39,28 +39,28 @@ Puppet::Type.type(:git).provide(:git) do
   end
 
   def branch
-    run_cwd{ git('rev-parse', '--abbrev-ref', 'HEAD') }
+    run_cwd { git('rev-parse', '--abbrev-ref', 'HEAD') }
   end
 
   def branch=(value)
-    run_cwd{ git('checkout', resource[:branch]) }
+    run_cwd { git('checkout', resource[:branch]) }
   end
 
   def origin
-    run_cwd{ git('config', '--get', 'remote.origin.url') }
+    run_cwd { git('config', '--get', 'remote.origin.url') }
   end
 
   def origin=(value)
-    run_cwd{ git('config', 'remote.origin.url', resource[:origin]) }
+    run_cwd { git('config', 'remote.origin.url', resource[:origin]) }
   end
 
   def latest
     if resource[:commit] or resource[:tag]
       true
     else
-      run_cwd{ git('fetch', '--all') }
-      head = run_cwd{ git('rev-parse', 'HEAD') }
-      remote = run_cwd{ git('rev-parse', "origin/#{resource[:branch]}") }
+      run_cwd { git('fetch', '--all') }
+      head = run_cwd { git('rev-parse', 'HEAD') }
+      remote = run_cwd { git('rev-parse', "origin/#{resource[:branch]}") }
       resource[:head] = head
       resource[:remote] = remote
       head == remote
@@ -68,9 +68,9 @@ Puppet::Type.type(:git).provide(:git) do
   end
 
   def latest=(value)
-    remote = run_cwd{ git('rev-parse', "origin/#{resource[:branch]}") }
+    remote = run_cwd { git('rev-parse', "origin/#{resource[:branch]}") }
     Puppet.debug(remote)
-    run_cwd{ git('reset', '--hard', remote) }
+    run_cwd { git('reset', '--hard', remote) }
   end
 
   def create
@@ -80,7 +80,7 @@ Puppet::Type.type(:git).provide(:git) do
     end
     git('clone', resource[:origin], resource[:path])
     unless resource[:branch] == 'master'
-      run_cwd{ git('checkout', [resource[:branch], resource[:commit], resource[:tag]].find{ |t| t } ) }
+      run_cwd { git('checkout', [resource[:branch], resource[:commit], resource[:tag]].find { |t| t } ) }
     end
   end
 
@@ -92,7 +92,7 @@ Puppet::Type.type(:git).provide(:git) do
     result = false
     begin
       if File.directory?(resource[:path])
-        result = (run_cwd{ git('rev-parse', '--git-dir') } == '.git')
+        result = (run_cwd { git('rev-parse', '--git-dir') } == '.git')
       end
     rescue Exception => e
       @remove_existing_dir = true
