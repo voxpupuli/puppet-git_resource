@@ -1,5 +1,5 @@
 Puppet::Type.type(:git).provide(:git) do
-  @doc = "Manages git repos."
+  @doc = 'Manages git repos.'
 
   confine :feature => :posix
 
