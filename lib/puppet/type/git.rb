@@ -44,7 +44,7 @@ Puppet::Type.newtype(:git) do
   newproperty(:latest) do
     desc 'Update the repo to match remote branch.'
 
-    def change_to_s(val, newval)
+    def change_to_s(_val, _newval)
       "Changing commit from: #{resource[:head]} to: #{resource[:remote]}"
     end
   end
@@ -73,7 +73,7 @@ Puppet::Type.newtype(:git) do
       raise('git supports checkout of a only one of: tag, commit, or branch.')
     end
 
-    unless self[:commit] or self[:tag]
+    unless self[:commit] || self[:tag]
       # default to master branch if user did not specify commit or branch
       self[:branch] ||= 'master'
     end

@@ -6,7 +6,7 @@ Puppet::Type.type(:git).provide(:git) do
   commands git: 'git'
 
   # Execute commands in git source code directory
-  def run_cwd(dir = resource[:path], &block)
+  def run_cwd(dir = resource[:path])
     result = nil
     Dir.chdir(dir) do
       result = yield.chomp
@@ -18,7 +18,7 @@ Puppet::Type.type(:git).provide(:git) do
     run_cwd { git('rev-parse', 'HEAD') }
   end
 
-  def commit=(value)
+  def commit=(_value)
     run_cwd do
       git('fetch', '--all')
       git('checkout', '-f', resource[:commit])
@@ -31,7 +31,7 @@ Puppet::Type.type(:git).provide(:git) do
     tag.split('^')[0]
   end
 
-  def tag=(value)
+  def tag=(_value)
     run_cwd do
       git('fetch', '--all')
       git('checkout', '-f', resource[:tag])
@@ -42,7 +42,7 @@ Puppet::Type.type(:git).provide(:git) do
     run_cwd { git('rev-parse', '--abbrev-ref', 'HEAD') }
   end
 
-  def branch=(value)
+  def branch=(_value)
     run_cwd { git('checkout', resource[:branch]) }
   end
 
@@ -50,12 +50,12 @@ Puppet::Type.type(:git).provide(:git) do
     run_cwd { git('config', '--get', 'remote.origin.url') }
   end
 
-  def origin=(value)
+  def origin=(_value)
     run_cwd { git('config', 'remote.origin.url', resource[:origin]) }
   end
 
   def latest
-    if resource[:commit] or resource[:tag]
+    if resource[:commit] || resource[:tag]
       true
     else
       run_cwd { git('fetch', '--all') }
@@ -67,14 +67,14 @@ Puppet::Type.type(:git).provide(:git) do
     end
   end
 
-  def latest=(value)
+  def latest=(_value)
     remote = run_cwd { git('rev-parse', "origin/#{resource[:branch]}") }
     Puppet.debug(remote)
     run_cwd { git('reset', '--hard', remote) }
   end
 
   def create
-    if @remove_existing_dir and resource[:replace]
+    if @remove_existing_dir && resource[:replace]
       notice("Removing existing directory #{resource[:path]} and replacing with git repo.")
       destroy
     end
