@@ -94,7 +94,7 @@ Puppet::Type.type(:git).provide(:git) do
       if File.directory?(resource[:path])
         result = (run_cwd { git('rev-parse', '--git-dir') } == '.git')
       end
-    rescue Exception => e
+    rescue StandardError => e
       @remove_existing_dir = true
       Puppet.debug(e.message)
     end
