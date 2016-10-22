@@ -79,9 +79,8 @@ Puppet::Type.type(:git).provide(:git) do
       destroy
     end
     git('clone', resource[:origin], resource[:path])
-    unless resource[:branch] == 'master'
-      run_cwd { git('checkout', [resource[:branch], resource[:commit], resource[:tag]].find { |t| t }) }
-    end
+    return if resource[:branch] == 'master'
+    run_cwd { git('checkout', [resource[:branch], resource[:commit], resource[:tag]].find { |t| t }) }
   end
 
   def destroy

@@ -65,11 +65,7 @@ Puppet::Type.newtype(:git) do
   validate do
     raise('git repo origin is a required attribute.') unless self[:origin]
 
-    if self[:branch] && self[:commit]
-      raise('git supports checkout of a only one of: tag, commit, or branch.')
-    elsif self[:branch] && self[:tag]
-      raise('git supports checkout of a only one of: tag, commit, or branch.')
-    elsif self[:tag] && self[:commit]
+    if (self[:branch] && self[:commit]) || (self[:branch] && self[:tag]) || (self[:tag] && self[:commit])
       raise('git supports checkout of a only one of: tag, commit, or branch.')
     end
 
