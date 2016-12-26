@@ -23,5 +23,11 @@
         "operatingsystemrelease": ["12.04","14.04"]
       }
   ],
-  "dependencies": [ ]
+  "dependencies": [ ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 3.8.7 < 5.0.0"
+    }
+  ]
 }
