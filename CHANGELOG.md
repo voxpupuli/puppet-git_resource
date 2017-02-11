@@ -1,6 +1,6 @@
 # Changelog
 
-## 2017-02-11 Releae 0.4.0
+## 2017-02-11 Release 0.4.0
 
 This is the last release with Puppet3 support!
 * fix license identifer in metadata.json
