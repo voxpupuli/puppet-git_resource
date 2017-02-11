@@ -1,6 +1,6 @@
 {
   "name": "puppet-git_resource",
-  "version": "0.4.1-rc0",
+  "version": "1.0.0-rc0",
   "author": "puppet",
   "license": "Apache-2.0",
   "summary": "Module for manipulating git repository checkouts",
@@ -16,28 +16,24 @@
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "5.0",
         "6.0"
       ]
     },
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "5.0",
         "6.0"
       ]
     },
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "6.0",
         "7.0"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "12.04",
         "14.04"
       ]
     }
@@ -48,7 +44,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 3.8.7 < 5.0.0"
+      "version_requirement": ">= 4.6.1 < 5.0.0"
     }
   ]
 }
