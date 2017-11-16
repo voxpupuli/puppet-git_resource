@@ -1,6 +1,6 @@
 {
   "name": "puppet-git_resource",
-  "version": "1.0.0-rc0",
+  "version": "1.0.0",
   "author": "puppet",
   "license": "Apache-2.0",
   "summary": "Module for manipulating git repository checkouts",
