@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v1.0.2](https://github.com/voxpupuli/puppet-git_resource/tree/v1.0.2) (2018-10-20)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-git_resource/compare/v1.0.1...v1.0.2)
+
+**Merged pull requests:**
+
+- modulesync 2.1.0 and allow puppet 6.x [\#51](https://github.com/voxpupuli/puppet-git_resource/pull/51) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v1.0.1](https://github.com/voxpupuli/puppet-git_resource/tree/v1.0.1) (2018-09-06)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-git_resource/compare/v1.0.0...v1.0.1)
