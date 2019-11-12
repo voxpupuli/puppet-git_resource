@@ -24,12 +24,6 @@
       "operatingsystemrelease": [
         "6"
       ]
-    },
-    {
-      "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [
-        "14.04"
-      ]
     }
   ],
   "dependencies": [],
