@@ -2,11 +2,15 @@
 
 [![Build Status](https://travis-ci.org/puppet-community/puppet-git_resource.png?branch=master)](https://travis-ci.org/puppet-community/puppet-git_resource)
 
-[puppetlabs-vcsrepo](https://github.com/puppetlabs/puppetlabs-vcsrepo) supports git, however I don't use other vcsrepo types, and bare repos. This is a simpler example implementing a git specific module, while adding automatic dependency against git class which vcsrepo type can not assume.
+[puppetlabs-vcsrepo](https://github.com/puppetlabs/puppetlabs-vcsrepo) supports
+git, however I don't use other vcsrepo types, and bare repos. This is a simpler
+example implementing a git specific module, while adding automatic dependency
+against git class which vcsrepo type can not assume.
 
 ## Warning
 
-* This project have been migrated to [puppet-community](https://github.com/puppet-community/puppet-git_resource), please adjust your repo git source.
+* This project have been migrated to [puppet-community](https://github.com/puppet-community/puppet-git_resource),
+  ‚please adjust your repo git source.
 
 ## Compatibility
 
@@ -46,9 +50,10 @@ git { 'vcsrepo1':
 
 ## Contributing
 
-puppet lint, rspec puppet, and acceptance testing in vagrant (or equivalence) should be completed:
+puppet lint, rspec puppet, and acceptance testing in vagrant (or equivalence)
+should be completed:
 
 1. bundle install
-2. bundle exec rake lint
-3. bundle exec rake spec
-4. bundle exec rake vagrant
+1. bundle exec rake lint
+1. bundle exec rake spec
+1. bundle exec rake vagrant
